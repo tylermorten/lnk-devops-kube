@@ -10,17 +10,17 @@ docker build -t gcr.io/lnk-devops/step-tracker:v1
 
 gcloud docker push gcr.io/lnk-devops/step-tracker:v1
 
-;; create deployment (replication controller)
+# create deployment (replication controller)
 kubectl run step-tracker --image=gcr.io/lnk-devops/step-tracker:v1 --replicas=2 --port=8080
 
-;; create load balancer
+# create load balancer
 kubectl expose deployment step-tracker --type=LoadBalancer
 
-;; Scale it
+# Scale it
 kubectl scale deployment step-tracker --replicas=4
 
-;; change it
+# change it
 kubectl set image deployment/step-tracker step-tracker=gcr.io/lnk-devops/step-tracker:v2
 
-;; Web UI
+# Web UI
 kubectl proxy --port 8081
