@@ -12,21 +12,21 @@ kubectl create -f db-service.yaml
 
 kubectl run -i --tty busybox --image=busybox --restart=Never
 
-docker build -t gcr.io/lnk-devops/step-tracker:v1
+docker build -t gcr.io/necode-kubetalk/fitme-inputsteps:v1
 
-gcloud docker push gcr.io/lnk-devops/step-tracker:v1
+gcloud docker -- push gcr.io/necode-kubetalk/fitme-inputsteps:v1
 
 # create deployment (replication controller)
-kubectl run step-tracker --image=gcr.io/lnk-devops/step-tracker:v1 --replicas=2 --port=8080
+kubectl run input-steps --image=gcr.io/necode-kubetalk/inputsteps:v1 --replicas=2 --port=8080
 
 # create load balancer
-kubectl expose deployment step-tracker --type=LoadBalancer
+kubectl expose deployment input-steps --type=LoadBalancer
 
 # Scale it
-kubectl scale deployment step-tracker --replicas=4
+kubectl scale deployment input-steps --replicas=4
 
 # change it
-kubectl set image deployment/step-tracker step-tracker=gcr.io/lnk-devops/step-tracker:v2
+kubectl set image deployment/input-steps input-steps=gcr.io/lnk-devops/step-tracker:v2
 
 # Get token for UI auth
 kubectl config view 
