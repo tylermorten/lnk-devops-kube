@@ -28,5 +28,8 @@ kubectl scale deployment step-tracker --replicas=4
 # change it
 kubectl set image deployment/step-tracker step-tracker=gcr.io/lnk-devops/step-tracker:v2
 
+# Get token for UI auth
+kubectl config view 
+
 # Web UI
 kubectl proxy --port 8081
