@@ -17,7 +17,7 @@ docker build -t gcr.io/necode-kubetalk/fitme-inputsteps:v1
 gcloud docker -- push gcr.io/necode-kubetalk/fitme-inputsteps:v1
 
 # create deployment (replication controller)
-kubectl run input-steps --image=gcr.io/necode-kubetalk/inputsteps:v1 --replicas=2 --port=8080
+kubectl run input-steps --image=gcr.io/necode-kubetalk/fitme-inputsteps:v1 --replicas=2 --port=8080
 
 # create load balancer
 kubectl expose deployment input-steps --type=LoadBalancer
@@ -26,7 +26,7 @@ kubectl expose deployment input-steps --type=LoadBalancer
 kubectl scale deployment input-steps --replicas=4
 
 # change it
-kubectl set image deployment/input-steps input-steps=gcr.io/lnk-devops/step-tracker:v2
+kubectl set image deployment/input-steps input-steps=gcr.io/necode-kubetalk/fitme-inputsteps:v2
 
 # Get token for UI auth
 kubectl config view 
