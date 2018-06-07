@@ -4,6 +4,8 @@ gcloud container clusters create fitme-dev1 --machine-type g1-small
 
 gcloud container clusters list
 
+gcloud container clusters get-credentials
+
 kubectl create -f postgres.yaml
 
 kubectl create -f db-service.yaml
