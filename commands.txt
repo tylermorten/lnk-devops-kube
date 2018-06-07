@@ -1,5 +1,7 @@
 gcloud compute disks create --size=50GB --zone=us-central1-f pg-db-disk
 
+gcloud container clusters create fitme-dev1 --machine-type g1-small
+
 kubectl create -f postgres.yaml
 
 kubectl create -f db-service.yaml
